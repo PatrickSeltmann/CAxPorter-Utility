@@ -1,0 +1,65 @@
+{
+  "id": "565e6205-dda1-49e0-bef2-4faed893d616",
+  "modifiedDateTime": null,
+  "conditions": {
+    "signInRiskLevels": [],
+    "times": null,
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "windows",
+        "macOS",
+        "linux"
+      ]
+    },
+    "deviceStates": null,
+    "applications": {
+      "applicationFilter": null,
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": [],
+      "includeApplications": [
+        "None"
+      ],
+      "excludeApplications": []
+    },
+    "locations": null,
+    "clientApplications": null,
+    "users": {
+      "excludeUsers": [],
+      "excludeGuestsOrExternalUsers": null,
+      "excludeGroups": [],
+      "includeGuestsOrExternalUsers": null,
+      "includeRoles": [],
+      "includeUsers": [],
+      "includeGroups": [
+        "CA-Persona-BreakGlassAccounts"
+      ],
+      "excludeRoles": []
+    },
+    "devices": null,
+    "clientAppTypes": [
+      "all"
+    ],
+    "userRiskLevels": []
+  },
+  "createdDateTime": "2025-04-17T10:03:40.0589384Z",
+  "grantControls": {
+    "termsOfUse": [],
+    "authenticationStrength@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies('565e6205-dda1-49e0-bef2-4faed893d616')/grantControls/authenticationStrength/$entity",
+    "authenticationStrength": null,
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "operator": "OR"
+  },
+  "templateId": null,
+  "sessionControls": null,
+  "partialEnablementStrategy": null,
+  "state": "enabledForReportingButNotEnforced",
+  "displayName": "CA01002-Breakglass-AttackSurfaceReduction-AllApps-AnyPlatform-BlockUnknownPlatforms"
+}

@@ -1,0 +1,75 @@
+{
+  "id": "d058c455-f8c0-49ef-91d3-a1ebd53fdd37",
+  "modifiedDateTime": "2024-12-01T11:55:00.8701854Z",
+  "conditions": {
+    "signInRiskLevels": [],
+    "times": null,
+    "platforms": null,
+    "deviceStates": null,
+    "applications": {
+      "applicationFilter": null,
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": [],
+      "includeApplications": [
+        "None"
+      ],
+      "excludeApplications": []
+    },
+    "locations": null,
+    "clientApplications": null,
+    "users": {
+      "excludeUsers": [],
+      "excludeGuestsOrExternalUsers": {
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessAllExternalTenants",
+          "membershipKind": "all"
+        },
+        "guestOrExternalUserTypes": "internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider"
+      },
+      "excludeGroups": [
+        "CA-Persona-Global-BaseProtection-Exclusions",
+        "CA-Persona-Admins",
+        "CA-Persona-AzureServiceAccounts",
+        "CA-Persona-BreakGlassAccounts",
+        "CA-Persona-CorpServiceAccounts",
+        "CA-Persona-Externals",
+        "CA-Persona-GuestAdmins",
+        "CA-Persona-Internals",
+        "CA-Persona-Microsoft365ServiceAccounts",
+        "CA-Persona-Guests",
+        "CA-Persona-Developers",
+        "CA-Persona-WorkloadIdentities"
+      ],
+      "includeGuestsOrExternalUsers": null,
+      "includeRoles": [],
+      "includeUsers": [
+        "All"
+      ],
+      "includeGroups": [],
+      "excludeRoles": [
+        "Directory Synchronization Accounts"
+      ]
+    },
+    "devices": null,
+    "clientAppTypes": [
+      "all"
+    ],
+    "userRiskLevels": []
+  },
+  "createdDateTime": "2024-07-10T11:29:29.7176575Z",
+  "grantControls": {
+    "termsOfUse": [],
+    "authenticationStrength@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies('d058c455-f8c0-49ef-91d3-a1ebd53fdd37')/grantControls/authenticationStrength/$entity",
+    "authenticationStrength": null,
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "operator": "OR"
+  },
+  "templateId": null,
+  "sessionControls": null,
+  "partialEnablementStrategy": null,
+  "state": "enabled",
+  "displayName": "CA00001-Global-BaseProtection-AllApps-AnyPlatform-BlockNonPersonas"
+}
