@@ -257,7 +257,7 @@ process {
                         # Enrich the policy JSON with display names and resolve references
                         $policy.Name
                         $ProcessedPolicies = Resolve-CAPolicyReferences -Policy $Policy
-                        $PolicyName = $ProcessedPolicies.DisplayName -replace '[\/\:*?"<>|]', '_'
+                        $PolicyName = $ProcessedPolicies.DisplayName -replace '[\\/:*?"<>|\[\]]', '-'
                         $json = $ProcessedPolicies | ConvertTo-Json -Depth 10
                         $json | Out-File "$OutputDir\$PolicyName.json" -Encoding utf8
 
@@ -322,7 +322,7 @@ process {
             foreach ($Policy in $Result) {
                 # Enrich the policy JSON with display names and resolve references
                 $ProcessedPolicies = Resolve-CAPolicyReferences -Policy $Policy
-                $PolicyName = $ProcessedPolicies.DisplayName -replace '[\/\:*?"<>|]', '_'
+                $PolicyName = $ProcessedPolicies.DisplayName -replace '[\\/:*?"<>|\[\]]', '-'
                 $json = $ProcessedPolicies | ConvertTo-Json -Depth 10
                 $json | Out-File "$OutputDir\$PolicyName.json" -Encoding utf8
                             

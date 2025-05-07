@@ -188,17 +188,17 @@ process {
                 $form.Controls.Add($progressLabel)
                 
                 foreach ($Policy in $selectedPolicies) {
-                    $name = $Policy.DisplayName -replace '[\/\:*?"<>|]', '_'
+                    $PolicyName = $Policy.DisplayName -replace '[\/\:*?"<>|]', '_'
 
                     # Enrich the policy JSON with display names and resolve references
                     $Processed = Resolve-CAPolicyReferences -Policy $Policy
                     $json = $Processed | ConvertTo-Json -Depth 10 -Compress
                     
                     # Call OpenAI API to generate Markdown documentation from the JSON
-                    $md = Request-OpenAIMarkdown -PolicyName $name -CAPolicyJSON $json -Key $key -Endpoint "https://api.openai.com/v1/chat/completions"
+                    $md = Request-OpenAIMarkdown -PolicyName $PolicyName -CAPolicyJSON $json -Key $key -Endpoint "https://api.openai.com/v1/chat/completions"
                     if ($md) {
                         # Save the generated Markdown content to the specified file
-                        $md | Out-File "$path\$name.md" -Encoding utf8
+                        $md | Out-File "$path\$PolicyName.md" -Encoding utf8
                     }
                     
                     # Update progress
@@ -233,13 +233,13 @@ process {
     }
     else {
         foreach ($Policy in $ConditionalAccessPolicies) {
-            $name = $Policy.DisplayName -replace '[\/\:*?"<>|]', '_'
+            $PolicyName = $ProcessedPolicies.DisplayName -replace '[\\/:*?"<>|\[\]]', '-'
             $Processed = Resolve-CAPolicyReferences -Policy $Policy
             $json = $Processed | ConvertTo-Json -Depth 10 -Compress
-            $md = Request-OpenAIMarkdown -PolicyName $name -CAPolicyJSON $json -Key $OpenAIKey
+            $md = Request-OpenAIMarkdown -PolicyName $PolicyName -CAPolicyJSON $json -Key $OpenAIKey
             if ($md) {
-                $md | Out-File "$OutputDir\$name.md" -Encoding utf8
-                Write-Host "Documented: $name" -ForegroundColor Cyan
+                $md | Out-File "$OutputDir\$PolicyName.md" -Encoding utf8
+                Write-Host "Documented: $PolicyName" -ForegroundColor Cyan
             }
             Start-Sleep -Milliseconds 1500
         }
