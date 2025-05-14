@@ -18,12 +18,12 @@ function Resolve-CAPolicyReferences {
 
     if ($Policy.Conditions.Users.IncludeGroups) {
         $Policy.Conditions.Users.IncludeGroups = @($Policy.Conditions.Users.IncludeGroups | ForEach-Object {
-                Get-GroupDisplayName $_
+                Get-GroupDisplayName -GroupID $_ -ApiVersion "v1.0"
             })
     }
     if ($Policy.Conditions.Users.ExcludeGroups) {
         $Policy.Conditions.Users.ExcludeGroups = @($Policy.Conditions.Users.ExcludeGroups | ForEach-Object {
-                Get-GroupDisplayName $_
+                Get-GroupDisplayName -GroupID $_ -ApiVersion "v1.0"
             })
     }
 

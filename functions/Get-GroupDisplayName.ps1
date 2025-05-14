@@ -1,14 +1,18 @@
-    # Funktion zum Abrufen des Displaynamens einer Gruppe anhand der Objekt-ID
-    function Get-GroupDisplayName {
-        param (
-            [string]$GroupId
-        )
-        try {
-            $Group = Get-MgGroup -GroupId $GroupId -ErrorAction Stop
-            return $Group.DisplayName
-        }
-        catch {
-            Write-Error "Fehler beim Abrufen des Gruppennamens für GroupId: $GroupId"
-            return $GroupId
-        }
+function Get-GroupDisplayName {
+    param (
+        [string]$GroupId,
+        [ValidateSet("v1.0", "beta")]
+        [string]$ApiVersion = "v1.0"
+    )
+
+    $uri = "https://graph.microsoft.com/$ApiVersion/groups/$GroupId"
+
+    try {
+        $group = Invoke-MgGraphRequest -Method GET -Uri $uri -OutputType PSObject
+        return $group.displayName
     }
+    catch {
+        Write-Error "Fehler beim Abrufen des Gruppennamens für GroupId: $GroupId. $_"
+        return $GroupId
+    }
+}

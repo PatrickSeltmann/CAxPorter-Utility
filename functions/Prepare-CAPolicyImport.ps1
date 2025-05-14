@@ -29,10 +29,10 @@ function Prepare-CAPolicyImport {
     }
     
     if ($Policy.Conditions.Users.IncludeGroups) {
-        $Policy.Conditions.Users.IncludeGroups = @($Policy.Conditions.Users.IncludeGroups | ForEach-Object { Get-GroupIdByName -GroupName $_ })
+        $Policy.Conditions.Users.IncludeGroups = @($Policy.Conditions.Users.IncludeGroups | ForEach-Object { Get-GroupIdByName -GroupName $_ -ApiVersion "v1.0" })
     }
     if ($Policy.Conditions.Users.ExcludeGroups) {
-        $Policy.Conditions.Users.ExcludeGroups = @($Policy.Conditions.Users.ExcludeGroups | ForEach-Object { Get-GroupIdByName -GroupName $_ })
+        $Policy.Conditions.Users.ExcludeGroups = @($Policy.Conditions.Users.ExcludeGroups | ForEach-Object { Get-GroupIdByName -GroupName $_ -ApiVersion "v1.0" })
     }
     
     if ($Policy.Conditions.Users.IncludeRoles) {
