@@ -116,7 +116,7 @@ begin {
             'Agreement.ReadWrite.All', `
             'Agreement.Read.All', `
             'Policy.Read.All', `
-            'Group.Read.All', `
+            'Group.ReadWrite.All', `
             'Application.Read.All', `
             'Directory.Read.All'
 
