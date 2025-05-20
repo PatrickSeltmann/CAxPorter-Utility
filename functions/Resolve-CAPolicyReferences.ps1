@@ -40,12 +40,12 @@ function Resolve-CAPolicyReferences {
 
     if ($Policy.Conditions.Users.IncludeRoles) {
         $Policy.Conditions.Users.IncludeRoles = @($Policy.Conditions.Users.IncludeRoles | ForEach-Object {
-                Get-RoleDisplayName $_
+                Get-RoleDisplayName -RoleId $_ -ApiVersion "v1.0"
             })
     }
     if ($Policy.Conditions.Users.ExcludeRoles) {
         $Policy.Conditions.Users.ExcludeRoles = @($Policy.Conditions.Users.ExcludeRoles | ForEach-Object {
-                Get-RoleDisplayName $_
+                Get-RoleDisplayName -RoleId $_ -ApiVersion "v1.0"
             })
     }
 

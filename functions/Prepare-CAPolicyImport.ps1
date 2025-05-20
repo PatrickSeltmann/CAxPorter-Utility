@@ -37,13 +37,13 @@ function Prepare-CAPolicyImport {
     
     if ($Policy.Conditions.Users.IncludeRoles) {
         $Policy.Conditions.Users.IncludeRoles = @($Policy.Conditions.Users.IncludeRoles | ForEach-Object {
-                $roleId = Get-RoleIdByName $_
+                $roleId = Get-RoleIdByName -RoleName $_ -ApiVersion "v1.0"
                 if ($roleId) { $roleId }
             })
     }
     if ($Policy.Conditions.Users.ExcludeRoles) {
         $Policy.Conditions.Users.ExcludeRoles = @($Policy.Conditions.Users.ExcludeRoles | ForEach-Object {
-                $roleId = Get-RoleIdByName $_
+                $roleId = Get-RoleIdByName -RoleName $_ -ApiVersion "v1.0"
                 if ($roleId) { $roleId }
             })
     }
