@@ -29,12 +29,12 @@ function Resolve-CAPolicyReferences {
 
     if ($Policy.Conditions.Users.IncludeUsers) {
         $Policy.Conditions.Users.IncludeUsers = @($Policy.Conditions.Users.IncludeUsers | ForEach-Object {
-                Get-UserDisplayName $_
+                Get-UserDisplayName -UserId $_ -ApiVersion "v1.0"
             })
     }
     if ($Policy.Conditions.Users.ExcludeUsers) {
         $Policy.Conditions.Users.ExcludeUsers = @($Policy.Conditions.Users.ExcludeUsers | ForEach-Object {
-                Get-UserDisplayName $_
+                Get-UserDisplayName -UserId $_ -ApiVersion "v1.0"
             })
     }
 

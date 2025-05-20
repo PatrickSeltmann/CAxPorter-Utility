@@ -132,6 +132,7 @@ begin {
     . ".\.\functions\Get-GroupIdByName.ps1"
     . ".\.\functions\Get-ApplicationIdByName.ps1"
     . ".\.\functions\Get-RoleIdByName.ps1"
+    . ".\.\functions\Get-UserIdByDisplayName.ps1"
     . ".\.\functions\Get-AuthenticationStrengthIdByName.ps1"
     . ".\.\functions\GetOrCreate-AuthenticationStrengthIdByName.ps1" 
     . ".\.\functions\GetOrCreate-TermsOfUse.ps1"  

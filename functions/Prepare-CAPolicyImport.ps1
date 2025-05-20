@@ -28,6 +28,13 @@ function Prepare-CAPolicyImport {
         $Policy.DisplayName = "$CAPolicyPrefix$($Policy.DisplayName)"
     }
     
+    if ($Policy.Conditions.Users.IncludeUsers) {
+        $Policy.Conditions.Users.IncludeUsers = @($Policy.Conditions.Users.IncludeUsers | ForEach-Object { Get-UserIdByDisplayName -DisplayName $_ -ApiVersion "v1.0" })
+    }
+    if ($Policy.Conditions.Users.ExcludeUsers) {
+        $Policy.Conditions.Users.ExcludeUsers = @($Policy.Conditions.Users.ExcludeUsers | ForEach-Object { Get-UserIdByDisplayName -DisplayName $_ -ApiVersion "v1.0" })
+    }
+
     if ($Policy.Conditions.Users.IncludeGroups) {
         $Policy.Conditions.Users.IncludeGroups = @($Policy.Conditions.Users.IncludeGroups | ForEach-Object { Get-GroupIdByName -GroupName $_ -ApiVersion "v1.0" })
     }

@@ -1,20 +1,26 @@
     # Funktion zum Abrufen des Displaynamens eines Benutzers anhand der Objekt-ID
     function Get-UserDisplayName {
-        param (
-            [string]$UserId
-        )
+    param (
+        [Parameter(Mandatory)]
+        [string]$UserId,
 
-        # Spezielle Behandlung für 'All'
-        if ($UserId -eq 'All') {
-            return $UserId  # Gib 'All' direkt zurück
-        }
+        [ValidateSet("v1.0", "beta")]
+        [string]$ApiVersion = "v1.0"
+    )
 
-        try {
-            $User = Get-MgUser -UserId $UserId -ErrorAction Stop
-            return $User.DisplayName
-        }
-        catch {
-            Write-Error "Fehler beim Abrufen des Benutzernamens für UserId: $UserId"
-            return $UserId
-        }
+    # Spezielle Behandlung für 'All'
+    if ($UserId -eq 'All') {
+        return $UserId
     }
+
+    $uri = "https://graph.microsoft.com/$ApiVersion/users/$UserId"
+
+    try {
+        $response = Invoke-MgGraphRequest -Method GET -Uri $uri -OutputType PSObject
+        return $response.displayName
+    }
+    catch {
+        Write-Warning "Fehler beim Abrufen des Benutzernamens für UserId: $UserId - $_"
+        return $UserId
+    }
+}
